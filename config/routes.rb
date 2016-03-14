@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
-  resources :teams
-  resources :games
-  resources :rounds
+  namespace :admin do
+    root 'application#index'
+
+    resources :rounds do
+      resources :games
+    end
+  end
+
+  resources :teams, only: [:index, :show]
+
+  resources :rounds, only: [:index, :show] do
+    resources :games, only: [:index, :show]
+  end
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
