@@ -4,7 +4,7 @@
   <% if round.games.any? %>
     <% round.games.each do |game| %>
       <div id="<%= "game-#{game.id}" %>">
-        <h3><%= "#{game.team_one.school} (#{game.team_one.seed}) - #{game.team_two.school} (#{game.team_two.seed})" %></h3>
+        <h3><%= game.team_one.school %> <span class="badge"><%= game.team_one.seed %></span> vs. <%= game.team_two.school %> <span class="badge"><%= game.team_two.seed %></h3>
         <p>
           <%= game.start_time.strftime("%B %e, %Y at %l:%M %P")  %> (in about <%= distance_of_time_in_words_to_now game.start_time %>).
         </p>
