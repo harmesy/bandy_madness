@@ -1,0 +1,20 @@
+<header>
+  <h1>Game details</h1>
+  <p>Startime: <%= @game.start_time.strftime("%B %e, %Y at %l:%M %P")  %> (in about <%= distance_of_time_in_words_to_now @game.start_time %>).</p>
+</header>
+
+<div id="game">
+  <div id="team_one">
+    <h2><%= "#{@game.team_one.school} #{@game.team_one.name}" %></h2>
+    <p>Wins: <%= @game.team_one.wins %></p>
+    <p>Losses: <%= @game.team_one.losses %></p>
+    <p>Overall seed: <%= @game.team_one.seed %></p>
+  </div>
+
+  <div id="team_two">
+    <h2><%= "#{@game.team_two.school} #{@game.team_two.name}" %></h2>
+    <p>Wins: <%= @game.team_two.wins %></p>
+    <p>Losses: <%= @game.team_two.losses %></p>
+    <p>Overall seed: <%= @game.team_two.seed %></p>
+  </div>
+</div>
