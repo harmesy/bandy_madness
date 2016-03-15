@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314230538) do
+ActiveRecord::Schema.define(version: 20160315005545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,14 @@ ActiveRecord::Schema.define(version: 20160314230538) do
   create_table "games", force: :cascade do |t|
     t.integer  "round_id"
     t.datetime "start_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "team_one_id"
+    t.integer  "team_two_id"
   end
+
+  add_index "games", ["team_one_id"], name: "index_games_on_team_one_id", using: :btree
+  add_index "games", ["team_two_id"], name: "index_games_on_team_two_id", using: :btree
 
   create_table "rounds", force: :cascade do |t|
     t.string   "name",            null: false
@@ -29,6 +34,16 @@ ActiveRecord::Schema.define(version: 20160314230538) do
     t.integer  "underdog_points", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "school",     null: false
+    t.string   "name",       null: false
+    t.integer  "wins",       null: false
+    t.integer  "losses",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "seed"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +64,6 @@ ActiveRecord::Schema.define(version: 20160314230538) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "games", "teams", column: "team_one_id"
+  add_foreign_key "games", "teams", column: "team_two_id"
 end
