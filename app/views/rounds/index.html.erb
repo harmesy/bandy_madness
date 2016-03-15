@@ -3,18 +3,23 @@
 
   <% if round.games.any? %>
     <% round.games.each do |game| %>
-      <div id="<%= "game-#{game.id}" %>">
-        <h3>
-          <%= game.team_one.school %> <span class="badge"><%= game.team_one.seed %></span> vs.
-          <%= game.team_two.school %> <span class="badge"><%= game.team_two.seed %></span>
-          <small>
-            <%= game.start_time.strftime("%B %e, %Y at %l:%M %P")  %> (in about <%= distance_of_time_in_words_to_now game.start_time %>).
-          </small>
-        </h3>
-
-        <p>
-          <%= render(game.selections.where(user: current_user)) || "You have not made a selection for this game thus far." %>
-        </p>
+      <div id="<%= "game-#{game.id}" %>" class="panel panel-default">
+        <div class="panel-heading">
+          <%= link_to [round, game] do %>
+            <h3 class="panel-title">
+              <%= game.team_one.school %> <span class="badge"><%= game.team_one.seed %></span> vs.
+              <%= game.team_two.school %> <span class="badge"><%= game.team_two.seed %></span>
+              <small>
+                <%= game.start_time.strftime("%B %e, %Y at %l:%M %P")  %> (in about <%= distance_of_time_in_words_to_now game.start_time %>).
+              </small>
+            </h3>
+          <% end %>
+        </div>
+        <div class="panel-body">
+          <p>
+            <%= render(game.selections.where(user: current_user)) || "You have not made a selection for this game thus far." %>
+          </p>
+        </div>
       </div>
     <% end %>
   <% else %>
