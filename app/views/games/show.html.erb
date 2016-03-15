@@ -1,7 +1,7 @@
 <header>
   <h1>
     Game details
-    <small>Startime: <%= @game.start_time.strftime("%B %e, %Y at %l:%M %P")  %> (in about <%= distance_of_time_in_words_to_now @game.start_time %>).</small>
+    <small>Start time: <%= @game.start_time.strftime("%B %e, %Y at %l:%M %P")  %> (in about <%= distance_of_time_in_words_to_now @game.start_time %>).</small>
   </h1>
 </header>
 

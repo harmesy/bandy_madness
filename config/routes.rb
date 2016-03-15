@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :selections
   namespace :admin do
     root 'application#index'
 
