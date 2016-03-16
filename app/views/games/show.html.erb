@@ -1,22 +1,25 @@
 <header>
   <h1>
     Game details
-    <small>Start time: <%= @game.start_time.strftime("%B %e, %Y at %l:%M %P")  %> (in about <%= distance_of_time_in_words_to_now @game.start_time %>).</small>
   </h1>
+  <p>Start time: <%= @game.start_time.strftime("%B %e, %Y at %l:%M %P")  %> (in about <%= distance_of_time_in_words_to_now @game.start_time %>).</p>
 </header>
 
-<div id="game">
-  <div id="team_one">
-    <h2><%= "#{@game.team_one.school} #{@game.team_one.name}" %></h2>
-    <p>Wins: <%= @game.team_one.wins %></p>
-    <p>Losses: <%= @game.team_one.losses %></p>
-    <p>Overall seed: <%= @game.team_one.seed %></p>
-  </div>
-
-  <div id="team_two">
-    <h2><%= "#{@game.team_two.school} #{@game.team_two.name}" %></h2>
-    <p>Wins: <%= @game.team_two.wins %></p>
-    <p>Losses: <%= @game.team_two.losses %></p>
-    <p>Overall seed: <%= @game.team_two.seed %></p>
-  </div>
-</div>
+<table id="game" class="table table-hover">
+  <tr>
+    <th>School</th>
+    <th>Name</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    <th>Overall Seed</th>
+  </tr>
+  <% [@game.team_one, @game.team_two].each do |team| %>
+    <tr>
+      <td><%= team.school %></td>
+      <td><%= team.name %></td>
+      <td><%= team.wins %></td>
+      <td><%= team.losses %></td>
+      <td><%= team.seed %></td>
+    </tr>
+  <% end %>
+</table>

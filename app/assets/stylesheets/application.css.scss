@@ -13,6 +13,13 @@ body {
   @extend .alert-danger;
 }
 
-#sidebar {
-  position: static;
+.jumbotron {
+  background: image-url("usa-today-8933589.0.0.jpg");
+  min-height: 400px;
+
+  h1 {
+    padding-top: 200px;
+    color: #f3f3f3;
+    text-shadow: 5px 0px 5px rgba(50, 50, 50, 1);
+  }
 }
