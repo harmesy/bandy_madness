@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :selections
   namespace :admin do
     root 'application#index'
 
@@ -9,7 +8,11 @@ Rails.application.routes.draw do
 
   resources :teams, only: [:index, :show]
   resources :rounds, only: [:index, :show]
-  resources :games, only: [:index, :show]
+  resources :games, only: [:index, :show] do
+    member do
+      patch 'select/:team_id', to: 'games#select', as: :select
+    end
+  end
 
   devise_for :users
 

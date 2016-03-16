@@ -10,13 +10,13 @@ class Selection < ActiveRecord::Base
 
   def one_selection_per_user_per_game
     if Selection.where(user: user, game: game).exists?
-      errors[:game] = "You have already made a selection for this game."
+      errors[:game] = "has already been selected."
     end
   end
 
   def selected_team_playing_in_game
     unless game.team_one == team || game.team_two == team
-      errors[:team] = "That team is not playing in this game."
+      errors[:team] = "is not playing in this game."
     end
   end
 end

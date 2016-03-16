@@ -12,6 +12,12 @@
   </div>
   <div class="panel-body">
     <p>
+      <%= link_to "Select #{game.team_one.school}", select_game_path(game, game.team_one), method: :patch %>
+    </p>
+    <p>
+      <%= link_to "Select #{game.team_two.school}", select_game_path(game, game.team_two), method: :patch %>
+    </p>
+    <p>
       <%= render(game.selections.where(user: current_user)) || "You have not made a selection for this game thus far." %>
     </p>
   </div>
