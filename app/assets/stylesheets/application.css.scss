@@ -12,3 +12,7 @@ body {
 .alert-alert {
   @extend .alert-danger;
 }
+
+#sidebar {
+  position: static;
+}

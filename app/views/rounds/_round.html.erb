@@ -1,0 +1,9 @@
+<h2><%= round.name %></h2>
+
+<% if round.games.any? %>
+  <%= render partial: "game", collection: round.games %>
+<% else %>
+  <p>
+    There are no games presently scheduled.
+  </p>
+<% end %>

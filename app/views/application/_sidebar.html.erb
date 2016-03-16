@@ -1,0 +1,7 @@
+<h3>Rounds</h3>
+
+<div class="list-group">
+  <% @rounds.each do |round| %>
+    <%= link_to round.name, round, class: "list-group-item" %>
+  <% end %>
+</div>

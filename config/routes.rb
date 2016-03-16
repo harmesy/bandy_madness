@@ -3,16 +3,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'application#index'
 
-    resources :rounds do
-      resources :games
-    end
+    resources :games
+    resources :rounds
   end
 
   resources :teams, only: [:index, :show]
-
-  resources :rounds, only: [:index, :show] do
-    resources :games, only: [:index, :show]
-  end
+  resources :rounds, only: [:index, :show]
+  resources :games, only: [:index, :show]
 
   devise_for :users
 
