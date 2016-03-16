@@ -5,6 +5,7 @@ class Selection < ActiveRecord::Base
 
   validate :one_selection_per_user_per_game
   validate :selected_team_playing_in_game
+  validate :no_selection_after_start_time
 
   protected
 
@@ -17,6 +18,12 @@ class Selection < ActiveRecord::Base
   def selected_team_playing_in_game
     unless game.team_one == team || game.team_two == team
       errors[:team] = "is not playing in this game."
+    end
+  end
+
+  def no_selection_after_start_time
+    unless DateTime.now < game.start_time
+      errors[:game] = "has already started. You cannot make you selection now."
     end
   end
 end
