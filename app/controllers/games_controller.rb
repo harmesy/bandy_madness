@@ -5,16 +5,18 @@ class GamesController < ApplicationController
 
   def select
     user = current_user
-    game = Game.find(params[:id])
+    @game = Game.find(params[:id])
     team = Team.find(params[:team_id])
 
-    selection = user.selections.build(game: game, team: team)
+    @selection = user.selections.build(game: @game, team: team)
 
     respond_to do |format|
-      if selection.save
+      if @selection.save
         format.html { redirect_to :back, notice: "Your selection has been made." }
+        format.js
       else
-        format.html { redirect_to :back, alert: "Could not make selection. #{selection.errors.full_messages.join(" ")}" }
+        format.html { redirect_to :back, alert: "Could not make selection. #{@selection.errors.full_messages.join(" ")}" }
+        format.js
       end
     end
   end

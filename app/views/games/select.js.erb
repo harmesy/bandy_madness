@@ -1,0 +1,10 @@
+<% if(@selection.errors.any?) %>
+  var msg = "<div class=\"alert alert-danger\" id=\"game-alert-<%= @game.id %>\">Could not make selection. <%= escape_javascript(@selection.errors.full_messages.join(" ")) %></div>";
+  if (document.getElementById('game-alert-<%= @game.id %>')) {
+    $("#game-alert-<%= @game.id %>").replaceWith(msg);
+  } else {
+    $("#game-selection-<%= @game.id %>").append(msg);
+  }
+<% else %>
+  $("#game-selection-<%= @game.id %>").replaceWith("<%= escape_javascript(render(@selection)) %>");
+<% end %>

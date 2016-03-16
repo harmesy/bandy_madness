@@ -23,7 +23,7 @@ class Selection < ActiveRecord::Base
 
   def no_selection_after_start_time
     unless DateTime.now < game.start_time
-      errors[:game] = "has already started. You cannot make you selection now."
+      errors[:game] = "has already started. You cannot make your selection now."
     end
   end
 end
